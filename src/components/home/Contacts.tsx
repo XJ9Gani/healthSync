@@ -1,6 +1,6 @@
 function Contacts() {
   return (
-    <section className="h-screen">
+    <section className="h-screen z-20">
       <h1 className="uppercase text-4xl text-[#32495E] font-semibold px-32 my-10">
         Контакты
       </h1>

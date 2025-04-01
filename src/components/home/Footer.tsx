@@ -1,6 +1,10 @@
-function Footer() {
+import { auth } from "@/config/auth";
+
+async function Footer() {
+  const session = await auth();
+  const user = session?.user;
   return (
-    <div>
+    <div className={user ? "block" : "hidden"}>
       <svg
         width="full"
         height="233"
