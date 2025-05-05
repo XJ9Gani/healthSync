@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import RegisterButton from "../../../components/doctors/RegisterButton";
 import Image from "next/image";
 
-async function getDoctors(): Promise<Doctor[]> {
+async function getDoctors(): Promise<any> {
   try {
     const res = await axios.get("http://localhost:5000/doctors");
     return res.data;
@@ -22,7 +22,7 @@ type DoctorPageProps = {
 
 export default async function DoctorPage({ params }: DoctorPageProps) {
   const doctors = await getDoctors();
-  const doctor = doctors.find((doc) => doc.id.toString() === params.id);
+  const doctor = doctors.find((doc: any) => doc.id.toString() === params.id);
 
   if (!doctor) return notFound();
 
