@@ -14,13 +14,7 @@ async function getDoctors(): Promise<any> {
   }
 }
 
-type DoctorPageProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function DoctorPage({ params }: DoctorPageProps) {
+export default async function DoctorPage({ params }: any) {
   const doctors = await getDoctors();
   const doctor = doctors.find((doc: any) => doc.id.toString() === params.id);
 
