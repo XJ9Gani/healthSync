@@ -1,4 +1,4 @@
-import { auth } from "@/config/auth";
+import { auth } from "@/components/userFromStorage/config/auth";
 
 async function Footer() {
   const session = await auth();

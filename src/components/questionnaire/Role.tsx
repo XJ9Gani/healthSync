@@ -1,27 +1,24 @@
+import QuestionnaireInput from "./QuestionaireInput";
+
+const gender = [
+  { id: 1, item: "Мужской" },
+  { id: 2, item: "Женский" },
+];
+
+const roles = [
+  { id: 1, item: "Пациент" },
+  { id: 2, item: "Доктор" },
+];
 function Role() {
   return (
-    <div className="h-[50vh] flex justify-center items-center gap-10">
-      <div className="flex items-center gap-3  h-10">
-        <label htmlFor="#doctor" className="block text-4xl">
-          Доктор
-        </label>
-        <input
-          type="checkbox"
-          id="doctor"
-          className="block rounded-full size-6"
-        />
+    <>
+      <h1 className="text-2xl font-medium">Информация</h1>
+      <div className="pt-10 flex justify-start gap-3">
+        <QuestionnaireInput lable="Пол" dropDown={gender} />
+        <QuestionnaireInput lable="Роль в системе" dropDown={roles} />
+        <QuestionnaireInput lable="Роль в системе" dropDown={roles} />
       </div>
-      <div className="flex items-center pag-3">
-        <label htmlFor="#doctor" className="block text-4xl">
-          Пациент
-        </label>
-        <input
-          type="checkbox"
-          id="patient"
-          className="block rounded-full size-6"
-        />
-      </div>
-    </div>
+    </>
   );
 }
 

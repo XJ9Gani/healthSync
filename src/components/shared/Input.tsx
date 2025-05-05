@@ -1,11 +1,5 @@
-import { FieldValues, UseFormRegister } from "react-hook-form";
-
-interface FormType {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { UseFormRegister } from "react-hook-form";
+import { FormType } from "../types/FormType";
 
 function Input({
   label,

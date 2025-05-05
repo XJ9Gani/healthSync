@@ -1,4 +1,4 @@
-import { auth } from "@/config/auth";
+import { auth } from "@/components/userFromStorage/config/auth";
 import HealthAndSafetyOutlineRounded from "../svg/HealthAndSafetyOutlineRounded";
 import Auth from "./Auth";
 import SingOutButton from "../profile/SingOutButton";
@@ -17,7 +17,29 @@ async function Header() {
           </h1>
         </Link>
       </div>
-      <div className="">{user && <></>}</div>
+      <div className="flex items-center justify-center gap-5 w-full ">
+        {user && <></>}
+        <Link
+          href={"/"}
+          className="text-lg transition-all duration-200 font-normal text-[#537494] border border-transparent p-2 rounded-full lg:hover:text-white lg:hover:border-[#537494] lg:hover:bg-[#7d99bd]"
+        >
+          Главная
+        </Link>
+
+        <Link
+          href={"/doctors"}
+          className="text-lg transition-all duration-200 font-normal text-[#537494] border border-transparent p-2 rounded-full lg:hover:text-white lg:hover:border-[#537494] lg:hover:bg-[#7d99bd]"
+        >
+          Список врачей
+        </Link>
+        <Link
+          href={"/doctors"}
+          className="text-lg transition-all duration-200 font-normal text-[#537494] border border-transparent p-2 rounded-full lg:hover:text-white lg:hover:border-[#537494] lg:hover:bg-[#7d99bd]"
+        >
+          О нас
+        </Link>
+      </div>
+
       <div className="flex justify-center items-center gap-3">
         <span className="text-lg font-medium bg-gradient-to-t from-[#537494] to-[#6591b9] text-transparent bg-clip-text">
           {" "}
@@ -25,7 +47,7 @@ async function Header() {
         </span>
         {user ? (
           <>
-            <SingOutButton />{" "}
+            <SingOutButton />
           </>
         ) : (
           <Auth />
