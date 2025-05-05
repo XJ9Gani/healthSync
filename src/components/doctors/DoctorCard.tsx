@@ -9,11 +9,6 @@ interface Props {
 export default function DoctorCard({ doctor, index }: Props) {
   return (
     <div className="border rounded-xl p-4 shadow-sm hover:shadow-md transition w-full max-w-md">
-      {/* <img
-        src={doctor.image}
-        alt={doctor.name}
-        className="w-full h-48 object-cover rounded-md mb-4"
-      /> */}
       <h2 className="text-xl font-bold mb-1">{doctor.name}</h2>
       <p className="text-sm text-gray-500 mb-1">
         {doctor.specialization} — {doctor.city}, {doctor.district}
