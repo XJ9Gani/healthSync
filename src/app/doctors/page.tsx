@@ -1,159 +1,219 @@
-// app/doctors/page.tsx
 import DoctorCard from "@/components/doctors/DoctorCard";
 import { Doctor } from "@/components/types/DoctorType";
 import axios from "axios";
 
-// const doctors: Doctor[] = [
-//   {
-//     id: "1",
-//     name: "Айдана Бакытова",
-//     city: "Алматы",
-//     district: "мкр Самал-1",
-//     rating: 2,
-//     reviews: 3,
-//     experience: 5,
-//     age: 28,
-//     description:
-//       "Опытная педиатр, работает с грудничками и детьми младшего возраста. Отлично владеет казахским и русским языками.",
-//     languages: ["Казахский", "Русский"],
-//     specialization: "Педиатр",
-//     image: "image_url_1",
-//   },
-//   {
-//     id: "2",
-//     name: "Марат Ермеков",
-//     city: "Астана",
-//     district: "р-н Есиль",
-//     rating: 4.8,
-//     reviews: 12,
-//     experience: 10,
-//     age: 35,
-//     description:
-//       "Опытный терапевт, специализируется на общих заболеваниях и профилактике.",
-//     languages: ["Казахский", "Русский", "Английский"],
-//     specialization: "Терапевт",
-//     image: "image_url_2",
-//   },
-//   {
-//     id: "3",
-//     name: "Жанна Тулегенова",
-//     city: "Шымкент",
-//     district: "мкр Нурсат",
-//     rating: 2,
-//     reviews: 8,
-//     experience: 7,
-//     age: 32,
-//     description:
-//       "Семейный врач, работает с детьми и взрослыми. Уделяет внимание профилактике и здоровому образу жизни.",
-//     languages: ["Русский", "Казахский"],
-//     specialization: "Семейный врач",
-//     image: "image_url_3",
-//   },
-//   {
-//     id: "4",
-//     name: "Ержан Айтбаев",
-//     city: "Караганда",
-//     district: "мкр Восток-5",
-//     rating: 1,
-//     reviews: 15,
-//     experience: 12,
-//     age: 40,
-//     description:
-//       "Геронтолог, работает с пожилыми пациентами. Помогает в борьбе с хроническими заболеваниями.",
-//     languages: ["Казахский", "Русский"],
-//     specialization: "Геронтолог",
-//     image: "image_url_4",
-//   },
-//   {
-//     id: "5",
-//     name: "Асель Рахимова",
-//     city: "Алматы",
-//     district: "Бостандыкский район",
-//     rating: 3.5,
-//     reviews: 6,
-//     experience: 6,
-//     age: 30,
-//     description:
-//       "Нутрициолог, разрабатывает индивидуальные планы питания, работает с людьми всех возрастов.",
-//     languages: ["Русский"],
-//     specialization: "Нутрициолог",
-//     image: "image_url_5",
-//   },
-//   {
-//     id: "6",
-//     name: "Айгерим Сагынтаева",
-//     city: "Атырау",
-//     district: "мкр Привокзальный",
-//     rating: 5,
-//     reviews: 10,
-//     experience: 9,
-//     age: 33,
-//     description: "Педиатр, специализируется на детских аллергиях и иммунитете.",
-//     languages: ["Казахский", "Русский"],
-//     specialization: "Педиатр",
-//     image: "image_url_6",
-//   },
-//   {
-//     id: "7",
-//     name: "Тимур Даулетов",
-//     city: "Актобе",
-//     district: "р-н Новый город",
-//     rating: 4.6,
-//     reviews: 2,
-//     experience: 8,
-//     age: 34,
-//     description:
-//       "Терапевт широкого профиля. Работает с взрослыми пациентами, проводит диагностику.",
-//     languages: ["Русский"],
-//     specialization: "Терапевт",
-//     image: "image_url_7",
-//   },
-//   {
-//     id: "8",
-//     name: "Салтанат Мусина",
-//     city: "Алматы",
-//     district: "мкр Таугуль",
-//     rating: 5,
-//     reviews: 20,
-//     experience: 14,
-//     age: 42,
-//     description:
-//       "Гинеколог, специализируется на женском здоровье, репродуктивной медицине.",
-//     languages: ["Казахский", "Русский"],
-//     specialization: "Гинеколог",
-//     image: "image_url_8",
-//   },
-//   {
-//     id: "9",
-//     name: "Руслан Есимов",
-//     city: "Тараз",
-//     district: "Центральный район",
-//     rating: 3.5,
-//     reviews: 7,
-//     experience: 6,
-//     age: 31,
-//     description:
-//       "Психотерапевт, работает с подростками и взрослыми. Помогает в борьбе с тревожностью и депрессией.",
-//     languages: ["Русский"],
-//     specialization: "Психотерапевт",
-//     image: "image_url_9",
-//   },
-//   {
-//     id: "10",
-//     name: "Мадина Калиева",
-//     city: "Костанай",
-//     district: "мкр Северный",
-//     rating: 2,
-//     reviews: 11,
-//     experience: 9,
-//     age: 37,
-//     description:
-//       "Невролог, работает со взрослыми и пожилыми пациентами. Лечит мигрени, бессонницу и стрессы.",
-//     languages: ["Казахский", "Русский"],
-//     specialization: "Невролог",
-//     image: "image_url_10",
-//   },
-// ];
+// Данные по умолчанию, если сервер не отвечает
+const fallbackDoctors: Doctor[] = [
+  {
+    id: "1",
+    name: "Айдана Бакытова",
+    city: "Алматы",
+    district: "мкр Самал-1",
+    rating: 2,
+    reviews: 3,
+    experience: 5,
+    age: 28,
+    description:
+      "Опытная педиатр, работает с грудничками и детьми младшего возраста. Отлично владеет казахским и русским языками.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Педиатр",
+    image: "image_url_1",
+  },
+  {
+    id: "2",
+    name: "Марат Ермеков",
+    city: "Астана",
+    district: "р-н Есиль",
+    rating: 4.8,
+    reviews: 12,
+    experience: 10,
+    age: 35,
+    description:
+      "Опытный терапевт, специализируется на общих заболеваниях и профилактике.",
+    languages: ["Казахский", "Русский", "Английский"],
+    specialization: "Терапевт",
+    image: "image_url_2",
+  },
+  {
+    id: "3",
+    name: "Жанна Тулегенова",
+    city: "Шымкент",
+    district: "мкр Нурсат",
+    rating: 2,
+    reviews: 8,
+    experience: 7,
+    age: 32,
+    description:
+      "Семейный врач, работает с детьми и взрослыми. Уделяет внимание профилактике и здоровому образу жизни.",
+    languages: ["Русский", "Казахский"],
+    specialization: "Семейный врач",
+    image: "image_url_3",
+  },
+  {
+    id: "4",
+    name: "Ержан Айтбаев",
+    city: "Караганда",
+    district: "мкр Восток-5",
+    rating: 1,
+    reviews: 15,
+    experience: 12,
+    age: 40,
+    description:
+      "Геронтолог, работает с пожилыми пациентами. Помогает в борьбе с хроническими заболеваниями.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Геронтолог",
+    image: "image_url_4",
+  },
+  {
+    id: "5",
+    name: "Асель Рахимова",
+    city: "Алматы",
+    district: "Бостандыкский район",
+    rating: 3.5,
+    reviews: 6,
+    experience: 6,
+    age: 30,
+    description:
+      "Нутрициолог, разрабатывает индивидуальные планы питания, работает с людьми всех возрастов.",
+    languages: ["Русский"],
+    specialization: "Нутрициолог",
+    image: "image_url_5",
+  },
+  {
+    id: "6",
+    name: "Айгерим Сагынтаева",
+    city: "Атырау",
+    district: "мкр Привокзальный",
+    rating: 5,
+    reviews: 10,
+    experience: 9,
+    age: 33,
+    description: "Педиатр, специализируется на детских аллергиях и иммунитете.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Педиатр",
+    image: "image_url_6",
+  },
+  {
+    id: "7",
+    name: "Тимур Даулетов",
+    city: "Актобе",
+    district: "р-н Новый город",
+    rating: 4.6,
+    reviews: 2,
+    experience: 8,
+    age: 34,
+    description:
+      "Терапевт широкого профиля. Работает с взрослыми пациентами, проводит диагностику.",
+    languages: ["Русский"],
+    specialization: "Терапевт",
+    image: "image_url_7",
+  },
+  {
+    id: "8",
+    name: "Салтанат Мусина",
+    city: "Алматы",
+    district: "мкр Таугуль",
+    rating: 5,
+    reviews: 20,
+    experience: 14,
+    age: 42,
+    description:
+      "Гинеколог, специализируется на женском здоровье, репродуктивной медицине.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Гинеколог",
+    image: "image_url_8",
+  },
+  {
+    id: "9",
+    name: "Руслан Есимов",
+    city: "Тараз",
+    district: "Центральный район",
+    rating: 3.5,
+    reviews: 7,
+    experience: 6,
+    age: 31,
+    description:
+      "Психотерапевт, работает с подростками и взрослыми. Помогает в борьбе с тревожностью и депрессией.",
+    languages: ["Русский"],
+    specialization: "Психотерапевт",
+    image: "image_url_9",
+  },
+  {
+    id: "10",
+    name: "Мадина Калиева",
+    city: "Костанай",
+    district: "мкр Северный",
+    rating: 2,
+    reviews: 11,
+    experience: 9,
+    age: 37,
+    description:
+      "Невролог, работает со взрослыми и пожилыми пациентами. Лечит мигрени, бессонницу и стрессы.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Невролог",
+    image: "image_url_10",
+  },
+  {
+    id: "11",
+    name: "Айнур Садыкова",
+    city: "Павлодар",
+    district: "мкр Зеленый",
+    rating: 5,
+    reviews: 13,
+    experience: 11,
+    age: 36,
+    description:
+      "Эндокринолог, специализируется на лечении сахарного диабета и проблем с щитовидной железой.",
+    languages: ["Русский"],
+    specialization: "Эндокринолог",
+    image: "image_url_11",
+  },
+  {
+    id: "12",
+    name: "Бахтияр Касымов",
+    city: "Уральск",
+    district: "мкр Западный",
+    rating: 2,
+    reviews: 9,
+    experience: 7,
+    age: 33,
+    description:
+      "Кардиолог, работает с пациентами с гипертонией и сердечной недостаточностью.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Кардиолог",
+    image: "image_url_12",
+  },
+  {
+    id: "13",
+    name: "Сания Турсунова",
+    city: "Алматы",
+    district: "р-н Жетысуский",
+    rating: 2,
+    reviews: 6,
+    experience: 5,
+    age: 29,
+    description:
+      "ЛОР-врач, занимается лечением заболеваний уха, горла и носа у детей и взрослых.",
+    languages: ["Русский"],
+    specialization: "Отоларинголог",
+    image: "image_url_13",
+  },
+  {
+    id: "14",
+    name: "Ильяс Джаксылыков",
+    city: "Астана",
+    district: "мкр Нурлы жол",
+    rating: 3.5,
+    reviews: 15,
+    experience: 10,
+    age: 38,
+    description:
+      "Ортопед, лечит травмы и заболевания опорно-двигательного аппарата.",
+    languages: ["Казахский", "Русский"],
+    specialization: "Ортопед",
+    image: "image_url_14",
+  },
+];
 
 const speciality = [
   { id: 1, name: "Ортопед" },
@@ -182,17 +242,17 @@ async function getDoctors(): Promise<Doctor[]> {
     const res = await axios.get("http://localhost:5000/doctors");
     return res.data;
   } catch (error) {
-    console.error("Ошибка загрузки докторов:", error);
-    return [];
+    console.error("Ошибка загрузки докторов, используем fallback:", error);
+    return fallbackDoctors;
   }
 }
 
 export default async function DoctorsPage() {
   const doctors = await getDoctors();
+
   return (
     <main className="pt-32 px-32">
       <div className="flex justify-between ">
-        {" "}
         <h1 className="text-4xl font-medium mb-6 text-[#658d9c]">
           Список врачей
         </h1>

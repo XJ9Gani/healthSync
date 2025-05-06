@@ -23,12 +23,11 @@ function SignInForm() {
   const onSubmit: SubmitHandler<FormType> = async (data) => {
     setAuthError(""); // очистка ошибки
 
-    // Сначала проверяем в localStorage
-    const storedUser = localStorage.getItem("currentUser");
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
+    // Проверка в currentUser (актуальный авторизованный)
+    const storedCurrentUser = localStorage.getItem("currentUser");
+    if (storedCurrentUser) {
+      const user = JSON.parse(storedCurrentUser);
 
-      // Проверка email и пароля
       if (user.email === data.email && user.password === data.password) {
         localStorage.setItem("user", JSON.stringify(user));
         router.push("/profileUserFromStore/personal_account");
@@ -40,7 +39,7 @@ function SignInForm() {
     }
 
     try {
-      // Если в localStorage не нашли, проверяем на сервере
+      // Основной запрос на сервер
       const response = await axios.get("http://localhost:5000/users");
       const users = response.data;
 
@@ -56,13 +55,37 @@ function SignInForm() {
         return;
       }
 
-      // Сохраняем пользователя в localStorage и редиректим
+      // Успешный вход — сохраняем пользователя
       localStorage.setItem("currentUser", JSON.stringify(user));
       localStorage.setItem("user", JSON.stringify(user));
       router.push("/profileUserFromStore/personal_account");
     } catch (error) {
-      console.error(error);
-      setAuthError("Ошибка сервера");
+      console.error("Ошибка сервера. Попробуем данные из localStorage:", error);
+
+      // Пытаемся найти пользователя в localStorage по ключу users
+      const fallbackUsers = localStorage.getItem("users");
+
+      if (fallbackUsers) {
+        const users = JSON.parse(fallbackUsers);
+        const user = users.find((u: FormType) => u.email === data.email);
+
+        if (!user) {
+          setAuthError("Email не найден (offline)");
+          return;
+        }
+
+        if (user.password !== data.password) {
+          setAuthError("Неверный пароль (offline)");
+          return;
+        }
+
+        // Успешный вход в оффлайн-режиме
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user));
+        router.push("/profileUserFromStore/personal_account");
+      } else {
+        setAuthError("Нет доступа к серверу и нет локальных данных");
+      }
     }
   };
 
