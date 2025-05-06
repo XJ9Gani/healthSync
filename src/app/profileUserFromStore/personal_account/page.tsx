@@ -73,42 +73,25 @@ function PersonalAccount() {
 
         <div className=" rounded-2xl bg-white h-[50vh] w-[95vw] mx-auto shadow-[0px_0px_4px_1px_gray] flex items-center justify-center">
           <div className="rounded-2xl bg-white h-[50vh] w-[95vw] mx-auto shadow-[0px_0px_4px_1px_gray]">
-            {currentUser?.appointments?.length ? (
+            {currentUser?.medications?.length ? (
               <>
                 <h1 className="text-[2rem] p-4">Ваши записи:</h1>
                 <div className="pl-10 flex h-3/4 items-center gap-3 flex-wrap overflow-hidden overflow-y-auto">
-                  {currentUser.appointments.map((el, index) => {
-                    const formattedDate = new Date(el.date).toLocaleString(
-                      "ru-RU",
-                      {
-                        timeZone: "Europe/Moscow",
-                        day: "2-digit",
-                        month: "2-digit",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      }
-                    );
+                  {currentUser.medications.map((el, index) => {
                     return (
                       <div
                         key={index}
                         className="shadow-[0_0_10px_1px_gray] w-1/3 h-full border rounded-2xl flex flex-col items-center justify-between p-4"
                       >
                         <h1 className="text-[2rem] text-[#537394] text-center font-medium ">
-                          {el.doctorName}
+                          {el.name}
                         </h1>
                         <span className="text-center text-[#537394]">
-                          {el.description}
+                          {el.afterWhat}
                         </span>
                         <span className="text-center text-[#537394]">
-                          {formattedDate}
+                          {el.time}
                         </span>
-                        <button
-                          onClick={() => handleDeleteAppointment(index)}
-                          className="mt-4 bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-                        >
-                          Отменить запись
-                        </button>
                       </div>
                     );
                   })}

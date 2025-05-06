@@ -39,6 +39,7 @@ function RegistrationMain() {
 
   const onSubmit = async (data: User) => {
     try {
+      // Пробуем получить всех пользователей с сервера
       const res = await axios.get(
         `http://localhost:5000/users?email=${data.email}`
       );
@@ -50,11 +51,9 @@ function RegistrationMain() {
         return;
       }
 
-      // Получаем всех пользователей, чтобы вычислить следующий string ID
       const allUsersRes = await axios.get("http://localhost:5000/users");
       const allUsers = allUsersRes.data;
 
-      // Найти максимальный числовой суффикс среди строковых ID
       const maxIdNum = allUsers.reduce((max: number, user: any) => {
         const match =
           typeof user.id === "string" && user.id.match(/^user-(\d+)$/);
@@ -68,7 +67,37 @@ function RegistrationMain() {
       localStorage.setItem("currentUser", JSON.stringify(newUser));
       router.push("/profileUserFromStore/personal_account");
     } catch (err) {
-      console.error("Ошибка при регистрации:", err);
+      console.warn("Сервер недоступен, используем localStorage");
+
+      // Получаем всех пользователей из localStorage
+      const localUsers = JSON.parse(localStorage.getItem("users") || "[]");
+
+      const emailExists = localUsers.some(
+        (user: User) => user.email === data.email
+      );
+      if (emailExists) {
+        setError("email", {
+          type: "manual",
+          message: "Пользователь с таким email уже существует (локально)",
+        });
+        return;
+      }
+
+      const maxIdNum = localUsers.reduce((max: number, user: any) => {
+        const match =
+          typeof user.id === "string" && user.id.match(/^user-(\d+)$/);
+        const num = match ? parseInt(match[1]) : 0;
+        return Math.max(max, num);
+      }, 0);
+
+      const newUser = { ...data, id: `user-${maxIdNum + 1}` };
+
+      // Сохраняем в localStorage
+      const updatedUsers = [...localUsers, newUser];
+      localStorage.setItem("users", JSON.stringify(updatedUsers));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+      router.push("/profileUserFromStore/personal_account");
     }
   };
 

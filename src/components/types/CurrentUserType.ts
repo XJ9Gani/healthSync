@@ -18,4 +18,12 @@ export interface CurrentUserType {
   phone: string;
   role: Role;
   appointments: Appoint[];
+  medications: [
+    {
+      name: string;
+      time: string;
+      dosageCount: number;
+      afterWhat: string;
+    }
+  ];
 }

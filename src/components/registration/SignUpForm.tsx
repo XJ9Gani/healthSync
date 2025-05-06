@@ -23,13 +23,29 @@ function SignInForm() {
   const onSubmit: SubmitHandler<FormType> = async (data) => {
     setAuthError(""); // очистка ошибки
 
+    // Сначала проверяем в localStorage
+    const storedUser = localStorage.getItem("currentUser");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+
+      // Проверка email и пароля
+      if (user.email === data.email && user.password === data.password) {
+        localStorage.setItem("user", JSON.stringify(user));
+        router.push("/profileUserFromStore/personal_account");
+        return;
+      } else {
+        setAuthError("Неверный пароль");
+        return;
+      }
+    }
+
     try {
+      // Если в localStorage не нашли, проверяем на сервере
       const response = await axios.get("http://localhost:5000/users");
       const users = response.data;
 
       const user = users.find((u: FormType) => u.email === data.email);
 
-      localStorage.setItem("currentUser", JSON.stringify(user));
       if (!user) {
         setAuthError("Email не существует");
         return;
@@ -40,6 +56,8 @@ function SignInForm() {
         return;
       }
 
+      // Сохраняем пользователя в localStorage и редиректим
+      localStorage.setItem("currentUser", JSON.stringify(user));
       localStorage.setItem("user", JSON.stringify(user));
       router.push("/profileUserFromStore/personal_account");
     } catch (error) {
