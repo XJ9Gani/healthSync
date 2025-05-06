@@ -1,5 +1,8 @@
 import Link from "next/link";
+import Location from "../svg/Location";
+import Image from "next/image";
 import { Doctor } from "../types/DoctorType";
+import StarRating from "./StarRating";
 
 interface Props {
   doctor: Doctor;
@@ -8,24 +11,64 @@ interface Props {
 
 export default function DoctorCard({ doctor, index }: Props) {
   return (
-    <div className="border rounded-xl p-4 shadow-sm hover:shadow-md transition w-full max-w-md">
-      <h2 className="text-xl font-bold mb-1">{doctor.name}</h2>
-      <p className="text-sm text-gray-500 mb-1">
-        {doctor.specialization} — {doctor.city}, {doctor.district}
-      </p>
-      <p className="mb-2 text-gray-700">{doctor.description}</p>
-      <p className="text-sm">
-        Опыт: {doctor.experience} лет | Возраст: {doctor.age}
-      </p>
-      <p className="text-sm">Языки: {doctor.languages.join(", ")}</p>
-      <p className="text-sm">
-        ⭐ {doctor.rating} ({doctor.reviews} отзывов)
-      </p>
-      <Link href={`/doctors/${index}`}>
-        <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          Подробнее
-        </button>
-      </Link>
-    </div>
+    <Link
+      href={`/doctors/${index}`}
+      className="flex rounded-xl p-4 lg:hover:shadow-[0_0_8px_1px_gray] transition w-full shadow-md cursor-pointer"
+    >
+      <Image
+        src={"/doctor.webp"}
+        alt="marat"
+        width={500}
+        height={500}
+        className="w-1/2 rounded-xl"
+      />
+
+      <div className="w-full pl-4 flex flex-col">
+        <h2 className="text-[2rem] font-medium text-[#658d9c]">
+          {doctor.name}
+        </h2>
+        <p className="text-md text-slate-500 mb-1 flex items-center">
+          <span>
+            <Location />
+          </span>{" "}
+          {doctor.city}, {doctor.district}
+        </p>
+
+        <div className="py-5 flex items-center text-slate-500">
+          <div>
+            <StarRating rating={doctor.rating} />
+          </div>
+          <span className=" border-r px-4">
+            {doctor.experience > 4 && `Опыт: ${doctor.experience} лет `}
+            {doctor.experience > 1 &&
+              doctor.experience < 4 &&
+              `Опыт: ${doctor.experience} года `}{" "}
+            {doctor.experience === 1 && `Опыт: ${doctor.experience} год `}
+          </span>
+          <span className=" border-r px-4">{doctor.reviews} отзывов</span>
+          <span className=" px-4">Возраст: {doctor.age} лет</span>
+        </div>
+
+        <p className="text-md font-medium text-slate-500">
+          Языки: {doctor.languages.join(", ")}
+        </p>
+
+        <h2 className="text-slate-500 font-light pt-5">{doctor.description}</h2>
+
+        <div className="flex gap-4 mt-10 text-slate-500">
+          <span className="bg-gray-200 rounded-lg  px-4 py-3">
+            {doctor.city}
+          </span>
+          <span className="bg-gray-200 rounded-lg  px-4 py-3">
+            {doctor.district}
+          </span>
+        </div>
+        {/* <Link href={`/doctors/${index}`}>
+          <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Подробнее
+          </button>
+        </Link> */}
+      </div>
+    </Link>
   );
 }
