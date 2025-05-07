@@ -101,9 +101,9 @@ function RegistrationMain() {
   };
 
   return (
-    <form className="p-3 " onSubmit={handleSubmit(onSubmit)}>
-      <h1 className="text-2xl font-medium text-center">Регистрация</h1>
-      <div className="grid grid-cols-3">
+    <form className="p-4  mx-auto w-full " onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="text-2xl font-medium text-center mb-6">Регистрация</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <RegistrationInput
           type="text"
           label="Имя"

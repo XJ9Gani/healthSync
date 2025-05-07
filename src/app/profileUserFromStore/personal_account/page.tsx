@@ -42,14 +42,14 @@ function PersonalAccount() {
 
   return (
     <section className="h-full">
-      <div className="relative pt-32 pl-5 bg-gradient-to-l from-[rgba(93,123,168,0.5)] to-[rgba(43,117,187,0.5)] h-80">
+      <div className="relative  pt-32 pl-5 bg-gradient-to-l from-[rgba(93,123,168,0.5)] to-[rgba(43,117,187,0.5)] h-56 lg:h-80">
         <h1
-          className="absolute bottom-1 left-48 text-[2.5rem] font-medium text-white"
+          className="hidden lg:block absolute bottom-1 left-48 text-[2.5rem] font-medium text-white"
           style={{ textShadow: "0px 0px 10px gray" }}
         >
           Добро пожаловать , {currentUser?.firstName} {currentUser?.lastName}
         </h1>
-        <div className="absolute -bottom-13 left-5  size-40 rounded-full border-[4px] border-[#F8FAFC] bg-[#bfdafd] shadow-md flex items-center justify-center">
+        <div className="absolute -bottom-13 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-5   size-40 rounded-full border-[4px] border-[#F8FAFC] bg-[#bfdafd] shadow-md flex items-center justify-center">
           <p className="text-[3rem] text-white font-medium">
             {currentUser?.firstName[0]}
           </p>
@@ -57,7 +57,10 @@ function PersonalAccount() {
       </div>
 
       <div className="h-[80vh] mt-10 border-b">
-        <h1 className="text-4xl p-10  font-bold text-[#6e8caa]">
+        <h1 className="block lg:hidden text-[1.2rem] text-center font-medium text-[#6e8caa] pt-4">
+          Добро пожаловать , {currentUser?.firstName} {currentUser?.lastName}
+        </h1>
+        <h1 className="text-2xl lg:text-4xl p-5 lg:p-10  font-bold text-[#6e8caa]">
           Состояние здоровья
         </h1>
 
@@ -67,7 +70,7 @@ function PersonalAccount() {
       </div>
 
       <div className="h-[80vh] border-b">
-        <h1 className="text-4xl p-10  font-bold text-[#6e8caa]">
+        <h1 className="text-2xl lg:text-4xl p-5 lg:p-10  font-bold text-[#6e8caa]">
           Список назначений
         </h1>
 
@@ -107,7 +110,7 @@ function PersonalAccount() {
       </div>
 
       <div className="h-[80vh] border-b">
-        <h1 className="text-4xl p-10  font-bold text-[#6e8caa]">
+        <h1 className="text-2xl lg:text-4xl p-5 lg:p-10  font-bold text-[#6e8caa]">
           Дневник Здоровья
         </h1>
 
@@ -117,7 +120,7 @@ function PersonalAccount() {
       </div>
 
       <div className="h-[80vh] border-b">
-        <h1 className="text-4xl p-10 font-bold text-[#6e8caa]">
+        <h1 className="text-2xl lg:text-4xl p-5 lg:p-10  font-bold text-[#6e8caa]">
           Ближайшие Консультации
         </h1>
 
@@ -171,7 +174,7 @@ function PersonalAccount() {
         </div>
       </div>
       <div className="h-[80vh] border-b">
-        <h1 className="text-4xl p-10  font-bold text-[#6e8caa]">
+        <h1 className="text-2xl lg:text-4xl p-5 lg:p-10  font-bold text-[#6e8caa]">
           Советы и Рекомендации
         </h1>
 

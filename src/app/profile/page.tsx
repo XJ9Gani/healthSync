@@ -37,7 +37,7 @@ export default async function Profile() {
       ) : (
         <>
           <SignUpForm />
-          <hr className="mb-10 w-1/4 mx-auto" />
+          <hr className="mb-5 w-11/12 lg:w-1/4 mx-auto" />
           <form
             action={async () => {
               "use server";
@@ -47,7 +47,7 @@ export default async function Profile() {
           >
             <button
               type="submit"
-              className="border border-gray-500 mx-auto w-1/5 py-2 shadow-md rounded-lg flex items-center justify-center gap-3 cursor-pointer hover:shadow-xl transition-all duration-200"
+              className="border border-gray-500 mx-auto w-11/12 lg:w-1/5 py-2 shadow-md rounded-lg flex items-center justify-center gap-3 cursor-pointer hover:shadow-xl transition-all duration-200"
             >
               <GoogleIcon />
               <span className="font-medium text-lg">Sign In with Google</span>

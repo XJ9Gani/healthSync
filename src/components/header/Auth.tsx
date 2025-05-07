@@ -22,19 +22,25 @@ function Auth() {
     <>
       {user ? (
         <>
-          <Link href="/profile">
-            <button
-              onClick={exitHandle}
-              className="text-[#6591b9] border border-[#6591b9] font-bold bg-white transition-all duration-200 cursor-pointer hover:bg-gradient-to-l hover:from-[#537494] hover:to-[#6591b9] p-3 w-32 h-14 items-center rounded-full shadow-md  hover:text-white"
-            >
-              Выйти
-            </button>
-          </Link>
           <Link
             href="/profileUserFromStore/personal_account"
             className="border p-3 rounded-lg border-[#6591b9] shadow-lg hover:shadow-[0_0_1px_1px_black]"
           >
             <Person />
+          </Link>
+          <Link href="/profile">
+            <button
+              onClick={exitHandle}
+              className="hidden lg:block text-[#6591b9] border border-[#6591b9] font-bold bg-white transition-all duration-200 cursor-pointer hover:bg-gradient-to-l hover:from-[#537494] hover:to-[#6591b9] p-3 w-32 h-14 items-center rounded-full shadow-md  hover:text-white"
+            >
+              Выйти
+            </button>
+            <button
+              onClick={exitHandle}
+              className="block lg:hidden text-[#6591b9] border border-[#6591b9] font-bold bg-white transition-all duration-200 cursor-pointer hover:bg-gradient-to-l hover:from-[#537494] hover:to-[#6591b9] p-3 items-center rounded-lg shadow-md  hover:text-white"
+            >
+              <LogIn />
+            </button>
           </Link>
         </>
       ) : (
