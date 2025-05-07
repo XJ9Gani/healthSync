@@ -21,9 +21,8 @@ function SignInForm() {
   } = useForm<FormType>();
 
   const onSubmit: SubmitHandler<FormType> = async (data) => {
-    setAuthError(""); // очистка ошибки
+    setAuthError("");
 
-    // Проверка в currentUser (актуальный авторизованный)
     const storedCurrentUser = localStorage.getItem("currentUser");
     if (storedCurrentUser) {
       const user = JSON.parse(storedCurrentUser);
@@ -39,7 +38,6 @@ function SignInForm() {
     }
 
     try {
-      // Основной запрос на сервер
       const response = await axios.get("http://localhost:5000/users");
       const users = response.data;
 
@@ -55,14 +53,12 @@ function SignInForm() {
         return;
       }
 
-      // Успешный вход — сохраняем пользователя
       localStorage.setItem("currentUser", JSON.stringify(user));
       localStorage.setItem("user", JSON.stringify(user));
       router.push("/profileUserFromStore/personal_account");
     } catch (error) {
       console.error("Ошибка сервера. Попробуем данные из localStorage:", error);
 
-      // Пытаемся найти пользователя в localStorage по ключу users
       const fallbackUsers = localStorage.getItem("users");
 
       if (fallbackUsers) {
@@ -79,7 +75,6 @@ function SignInForm() {
           return;
         }
 
-        // Успешный вход в оффлайн-режиме
         localStorage.setItem("currentUser", JSON.stringify(user));
         localStorage.setItem("user", JSON.stringify(user));
         router.push("/profileUserFromStore/personal_account");
@@ -95,7 +90,10 @@ function SignInForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col">
-        <label htmlFor="email" className="mb-1">
+        <label
+          htmlFor="email"
+          className="mb-1 text-2xl font-medium text-slate-500"
+        >
           Email
         </label>
         <input
@@ -109,7 +107,7 @@ function SignInForm() {
               message: "Некорректный email",
             },
           })}
-          className="border p-2 rounded"
+          className="border p-3 rounded-lg"
         />
         {errors.email && (
           <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -117,7 +115,10 @@ function SignInForm() {
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="password" className="mb-1">
+        <label
+          htmlFor="password"
+          className="mb-1 text-2xl font-medium text-slate-500"
+        >
           Пароль
         </label>
         <input
@@ -144,7 +145,7 @@ function SignInForm() {
 
       <button
         type="submit"
-        className="mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+        className="mt-4 bg-[#6591b9] text-white p-3 rounded-lg hover:bg-white hover:shadow-[0_0_10px_1px_gray] hover:text-[#6591b9] transition text-xl"
       >
         Войти
       </button>
