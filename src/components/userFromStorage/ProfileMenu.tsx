@@ -14,8 +14,8 @@ function ProfileMenu({
 }) {
   return (
     <section
-      className={`fixed top-0 left-0 h-screen overflow-hidden transition-all duration-200 z-50 bg-white shadow-2xl ${
-        show ? "w-1/4 p-10 " : "w-0 pt-10 "
+      className={` fixed top-0 left-0 h-screen overflow-hidden transition-all duration-200 z-50 bg-white shadow-2xl ${
+        show ? "w-full lg:w-1/4 p-10 " : "w-0 pt-10 "
       }`}
     >
       <div

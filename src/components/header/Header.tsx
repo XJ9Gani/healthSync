@@ -27,7 +27,7 @@ function Header() {
           </h1>
         </Link>
       </div>
-      <div className="items-centerjustify-center gap-5 w-full hidden lg:flex ">
+      <div className="items-center justify-center gap-5 w-full hidden lg:flex ">
         {currentUser && (
           <>
             <Link
@@ -53,7 +53,7 @@ function Header() {
         )}
       </div>
 
-      <div className="flex justify-center items-center gap-3 pr-2 lg:pr-0">
+      <div className="flex justify-center items-center gap-3 ">
         <span className="text-lg font-medium bg-gradient-to-t from-[#537494] to-[#6591b9] text-transparent bg-clip-text">
           {" "}
           {currentUser?.name}

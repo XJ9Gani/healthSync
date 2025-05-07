@@ -59,12 +59,12 @@ const assets = [
 
 function AssetsSection() {
   return (
-    <section className="h-screen pt-20">
-      <div className="px-32 h-full">
-        <h1 className="uppercase text-4xl font-bold text-[#32495E]">
+    <section className="h-screen pt-20 ">
+      <div className="lg:px-32 h-full">
+        <h1 className="uppercase text-2xl text-center lg:text-start lg:text-4xl font-bold text-[#32495E] py-5">
           Фото и видео отчеты
         </h1>
-        <div className="my-3 h-8 flex gap-5">
+        <div className="my-3 h-8  gap-5 hidden lg:flex">
           <span className="text-lg text-[#32495E] text- hover:border-b hover:border-red-500 lowercase">
             Показать все
           </span>
@@ -75,7 +75,7 @@ function AssetsSection() {
             Только фото
           </span>
         </div>
-        <div className="h-full grid grid-cols-3 grid-rows-3 bg-[#32495E]">
+        <div className="h-full grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-3 bg-[#32495E]">
           {assets.map((el) => (
             <div className="relative z-10" key={el.id}>
               <div className="z-10 h-full w-full flex items-center justify-center">

@@ -4,7 +4,7 @@ import Image from "next/image";
 
 function HomeServiceCard({ service }: { service: Service }) {
   return (
-    <div className="h-5/6">
+    <div className="h-fit lg:h-5/6 ">
       <div className="h-1/3 relative">
         <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-white">
           <ServiceCardIcon />

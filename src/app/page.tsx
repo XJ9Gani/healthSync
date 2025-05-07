@@ -34,11 +34,17 @@ export default function Home() {
   return (
     <main className="">
       <HomeHeading />
+
       <HomeServices services={services} />
+
       <WhatCanWeDo />
+
       <HowItWorks />
+
       <AssetsSection />
+
       <Health />
+
       <Contacts />
     </main>
   );

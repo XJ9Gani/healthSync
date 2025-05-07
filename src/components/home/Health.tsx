@@ -2,8 +2,8 @@ import Image from "next/image";
 
 function Health() {
   return (
-    <section className="z-20 relative overflow-hidden h-[60vh] bg-[#32495E] my-24">
-      <h1 className="px-32 text-white absolute text-[5rem] font-bold top-1/4">
+    <section className="z-20 relative overflow-hidden h-[60vh] bg-[#32495E] my-24 hidden lg:block">
+      <h1 className="lg:px-32 text-white absolute text-[2rem] lg:text-[5rem] font-bold top-1/4">
         “Начните следить за своим здоровьем уже сегодня!”
       </h1>
       <Image

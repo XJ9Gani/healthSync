@@ -10,13 +10,13 @@ const links: HowItWorkItem[] = [
 
 function HowItWorks() {
   return (
-    <section className="h-[80vh] bg-gradient-to-b from-[#537494] to-[#6591b9] py-10">
-      <h1 className="pl-32 text-[56px] text-white font-semibold text-3xl bg-gradient-to-b  py-6 uppercase">
+    <section className="hidden lg:block h-[80vh] bg-gradient-to-b from-[#537494] to-[#6591b9] py-10">
+      <h1 className="lg:pl-32 lg:text-[56px] text-white font-semibold text-[36px]  bg-gradient-to-b  py-6 uppercase text-center lg:text-start">
         Как это работает?
       </h1>
 
-      <div className="flex h-2/3 my-16">
-        <div className="pl-32 h-2/3 w-1/2 flex flex-col gap-8 justify-center">
+      <div className="flex flex-col lg:flex-row h-2/3 my-16">
+        <div className="lg:pl-32 h-2/3 lg:w-1/2 flex flex-col gap-8 justify-center">
           {links.map((el) => (
             <HowItWorksItem el={el} key={el.id} />
           ))}

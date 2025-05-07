@@ -2,11 +2,11 @@ import Button from "../shared/Button";
 
 function HomeTitle() {
   return (
-    <section className="my-12 h-5/6 w-1/2 flex flex-col justify-around">
-      <p className="text-[56px] leading-none bg-gradient-to-t from-[#537494] to-[#6591b9] bg-clip-text text-transparent text-4xl font-bold">
+    <section className="mt-14 lg:mt-12 h-fit lg:h-5/6 w-full lg:w-1/2 flex flex-col justify-around gap-5">
+      <p className="pl-5 lg:pl-0 text-center lg:text-start text-[36px] lg:text-[56px]  leading-none bg-gradient-to-t from-[#537494] to-[#6591b9] bg-clip-text text-transparent font-bold">
         Цифровая платформа для мониторинга здоровья
       </p>
-      <p className="text-lg text-white font-semibold tracking-wide">
+      <p className=" text-center lg:text-start lg:text-[26px]  text-[#6591b9] font-semibold ">
         Помогаем следить за здоровьем, вовремя принимать лекарства и
         взаимодействовать с врачами
       </p>

@@ -142,13 +142,13 @@ function InteractiveMedList() {
     }
   };
   return (
-    <section className="mt-5 ">
-      <h1 className="text-3xl font-medium text-black">
+    <section className="mt-5">
+      <h1 className="text-xl text-center lg:text-start lg:text-3xl font-medium text-black ">
         Список приёмов медикаментов
       </h1>
 
-      <div className="flex mt-2">
-        <ul className="border h-96 w-3/4 rounded-lg bg-white border-gray-400 shadow-xl overflow-auto ">
+      <div className="flex flex-col gap-5 items-center lg:items-start lg:flex-row mt-2">
+        <ul className="border w-11/12 h-96 lg:w-3/4 rounded-lg bg-white border-gray-400 shadow-xl overflow-auto ">
           {list.length === 0 ? (
             <p className="text-[2rem] text-[#777777] font-normal text-center pt-16">
               Список пуст
@@ -186,7 +186,7 @@ function InteractiveMedList() {
 
         <button
           onClick={openTimeSetter}
-          className="px-4 mx-4 h-20 font-bold text-white bg-gradient-to-l from-[#537494] to-[#6591b9] transition-all duration-200 cursor-pointer hover:from-[#ffffff] hover:to-[#ffffff] items-center rounded-full shadow-md hover:text-[#537494]"
+          className="w-11/12 lg:w-fit px-4 mx-4 h-20 font-bold text-white bg-gradient-to-l from-[#537494] to-[#6591b9] transition-all duration-200 cursor-pointer lg:hover:from-[#ffffff] lg:hover:to-[#ffffff] items-center rounded-lg lg:rounded-full shadow-md lg:hover:text-[#537494]"
         >
           Добавить приём
         </button>
@@ -226,7 +226,7 @@ function InteractiveMedList() {
             />
             <button
               onClick={handleAdd}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="bg-blue-500 text-white px-4 py-2 rounded lg:hover:bg-blue-600"
             >
               Добавить
             </button>

@@ -29,7 +29,7 @@ function UserFromStorage({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="relative flex">
+    <div className="relative flex ">
       <div
         onClick={handleMenuShow}
         className="fixed top-1/2 -left-3  shadow-[0px_0px_5px_1px_gray] p-3 rounded-lg bg-white cursor-pointer z-40"

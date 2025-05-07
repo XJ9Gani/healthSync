@@ -49,8 +49,10 @@ import InteractiveMedList from "@/components/reminders/InteractiveMedList";
 
 function Reminders() {
   return (
-    <section className="w-11/12 h-11/12 pt-32 pl-5 relative">
-      <h1 className="text-5xl font-bold text-[#537494]">Упоминания</h1>
+    <section className="w-full lg:w-11/12 lg:h-11/12 pt-32 pl-5 relative ">
+      <h1 className=" text-center lg:text-start text-3xl lg:text-5xl font-bold text-[#537494]">
+        Упоминания
+      </h1>
       <InteractiveMedList />
     </section>
   );
