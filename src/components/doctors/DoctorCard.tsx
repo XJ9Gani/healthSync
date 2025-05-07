@@ -13,14 +13,14 @@ export default function DoctorCard({ doctor, index }: Props) {
   return (
     <Link
       href={`/doctors/${index}`}
-      className="flex rounded-xl p-4 lg:hover:shadow-[0_0_8px_1px_gray] transition w-full shadow-md cursor-pointer"
+      className="flex flex-col  lg:flex-row rounded-xl p-4 lg:hover:shadow-[0_0_8px_1px_gray] transition w-11/12 mx-auto shadow-md cursor-pointer"
     >
       <Image
         src={"/doctor.webp"}
         alt="marat"
         width={500}
         height={500}
-        className="w-1/2 rounded-xl"
+        className="lg:w-1/2 rounded-xl"
       />
 
       <div className="w-full pl-4 flex flex-col">
@@ -34,19 +34,19 @@ export default function DoctorCard({ doctor, index }: Props) {
           {doctor.city}, {doctor.district}
         </p>
 
-        <div className="py-5 flex items-center text-slate-500">
+        <div className=" py-5 flex flex-col lg:flex-row lg:items-center items-start text-slate-500">
           <div>
             <StarRating rating={doctor.rating} />
           </div>
-          <span className=" border-r px-4">
+          <span className=" lg:border-r lg:px-">
             {doctor.experience > 4 && `Опыт: ${doctor.experience} лет `}
             {doctor.experience > 1 &&
               doctor.experience < 4 &&
               `Опыт: ${doctor.experience} года `}{" "}
             {doctor.experience === 1 && `Опыт: ${doctor.experience} год `}
           </span>
-          <span className=" border-r px-4">{doctor.reviews} отзывов</span>
-          <span className=" px-4">Возраст: {doctor.age} лет</span>
+          <span className=" lg:border-r lg:px-">{doctor.reviews} отзывов</span>
+          <span className=" lg:px-">Возраст: {doctor.age} лет</span>
         </div>
 
         <p className="text-md font-medium text-slate-500">

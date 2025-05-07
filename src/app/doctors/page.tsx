@@ -251,22 +251,22 @@ export default async function DoctorsPage() {
   const doctors = await getDoctors();
 
   return (
-    <main className="pt-32 px-32">
+    <main className="pt-32 lg:px-32">
       <div className="flex justify-between ">
-        <h1 className="text-4xl font-medium mb-6 text-[#658d9c]">
+        <h1 className="text-center lg:text-start text-4xl font-medium mb-6 text-[#658d9c]  w-full">
           Список врачей
         </h1>
-        <h1 className="text-4xl font-medium mb-6 text-[#658d9c]  mr-[6rem]">
+        <h1 className="hidden lg:block text-4xl font-medium mb-6 text-[#658d9c]  mr-[6rem]">
           Фильтры
         </h1>
       </div>
       <div className="flex">
-        <div className="grid grid-cols-1 gap-6 w-3/4  pt-10">
+        <div className="grid grid-cols-1 gap-6 w-full lg:w-11/12  pt-10 ">
           {doctors.map((doctor) => (
             <DoctorCard key={doctor.id} doctor={doctor} index={+doctor.id} />
           ))}
         </div>
-        <div className="w-1/4 h-fit">
+        <div className="w-1/4 h-fit hidden lg:block">
           <div className=" w-full p-5">
             <p className="text-lg font-light text-[#658d9c]">
               Язык для разговора

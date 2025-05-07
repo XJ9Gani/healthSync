@@ -189,6 +189,26 @@
           "afterWhat": "123"
         }
       ]
+    },
+    {
+      "id": "user-10",
+      "firstName": "Гани",
+      "lastName": "Галиев",
+      "gender": "Мужской",
+      "role": "Доктор",
+      "dob": "2025-05-22",
+      "phone": "87470468403",
+      "email": "ganisergalievS29@gmail.com",
+      "password": "123123",
+      "confirmPassword": "123123",
+      "medications": [
+        {
+          "name": "Паравломиф",
+          "time": "21:07",
+          "dosageCount": 1,
+          "afterWhat": "123123"
+        }
+      ]
     }
   ],
   "doctors": [

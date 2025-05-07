@@ -30,7 +30,7 @@ function MobileMenu() {
             Список врачей
           </Link>
           <Link
-            href={"/"}
+            href={"/about"}
             className="text-lg transition-all duration-200 font-normal text-[#537494] border border-transparent p-2 rounded-full lg:hover:text-white lg:hover:border-[#537494] lg:hover:bg-[#7d99bd]"
           >
             О нас
